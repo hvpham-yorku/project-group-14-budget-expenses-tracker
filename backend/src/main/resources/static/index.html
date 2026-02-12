@@ -1,42 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Student Budget Tracker</title>
+<meta charset="UTF-8">
+<title>Student Budget Tracker</title>
+
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f4f6f9;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 700px;
+        margin: 40px auto;
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+        text-align: center;
+        color: #2c3e50;
+    }
+
+    h2 {
+        color: #34495e;
+        margin-top: 30px;
+    }
+
+    label {
+        display: block;
+        margin-top: 12px;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 6px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+    }
+
+    button {
+        margin-top: 20px;
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 6px;
+        background: #4f46e5;
+        color: white;
+        font-size: 15px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #4338ca;
+    }
+
+    .card {
+        margin-top: 15px;
+        padding: 15px;
+        background: #f9fafb;
+        border-radius: 8px;
+        border: 1px solid #e5e7eb;
+    }
+
+    .note {
+        margin-top: 20px;
+        font-size: 13px;
+        color: #6b7280;
+        text-align: center;
+    }
+</style>
 </head>
+
 <body>
-  <h1>Student Budget & Expenses Tracker (ITR1)</h1>
 
-  <h2>Add Expense (Stub)</h2>
-  <p>This is a basic GUI placeholder for Iteration 1.</p>
+<div class="container">
 
-  <form>
-    <label>Academic Term:</label>
-    <input type="text" value="Winter 2026" /><br/><br/>
+    <h1>Student Budget & Expenses Tracker</h1>
 
-    <label>Category:</label>
-    <input type="text" placeholder="food / rent / tuition" /><br/><br/>
+    <h2>Add Expense</h2>
 
-    <label>Description:</label>
-    <input type="text" placeholder="e.g., groceries" /><br/><br/>
+    <form>
+        <label>Academic Term</label>
+        <input type="text" placeholder="Winter 2026">
 
-    <label>Amount:</label>
-    <input type="number" step="0.01" /><br/><br/>
+        <label>Category</label>
+        <input type="text" placeholder="Food, Rent, Tuition">
 
-    <button type="button">Add Expense (not wired yet)</button>
-  </form>
+        <label>Description</label>
+        <input type="text" placeholder="Groceries">
 
-  <hr/>
+        <label>Amount</label>
+        <input type="number" step="0.01" placeholder="0.00">
 
-  <h2>Term Summary (Stub)</h2>
-  <ul>
-    <li>Total Income: (coming soon)</li>
-    <li>Total Expenses: (coming soon)</li>
-    <li>Remaining Balance: (coming soon)</li>
-    <li>Over Budget Warning: (coming soon)</li>
-  </ul>
+        <button type="button">Add Expense (ITR1 demo)</button>
+    </form>
 
-  <p><em>Next iteration: connect this page to service logic and show real expenses.</em></p>
+    <h2>Term Summary</h2>
+
+    <div class="card">Total expenses: —</div>
+    <div class="card">Remaining balance: —</div>
+    <div class="card">Over-budget warning: —</div>
+
+    <div class="note">
+        This is a visual prototype for Iteration 1.  
+        Backend logic and calculations are implemented and tested separately.
+    </div>
+
+</div>
+
 </body>
 </html>
