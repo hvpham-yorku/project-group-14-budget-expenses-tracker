@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.yorku.budgettracker.budgettracker.model.Expense;
-import com.yorku.budgettracker.budgettracker.repository.InMemoryExpenseRepository;
+import com.yorku.budgettracker.budgettracker.stub.InMemoryExpenseStore;
 
 public class BudgetServiceTest {
 
@@ -16,7 +16,8 @@ public class BudgetServiceTest {
 
     @BeforeEach
     void setup() {
-        service = new BudgetService(new InMemoryExpenseRepository());
+        service = new BudgetService(new InMemoryExpenseStore());
+
     }
 
     @Test
