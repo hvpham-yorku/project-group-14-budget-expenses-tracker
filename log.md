@@ -23,3 +23,8 @@
 - Add/update GitHub Wiki and architecture sketch.
 - Update planning document (ITR0 → revised ITR1).
 - Tag final commit as ITR1 before deadline.
+
+- ### Local verification to test GUI works
+- Ran ./mvnw test → BUILD SUCCESS
+- Ran ./mvnw spring-boot:run and opened http://localhost:8080/ → GUI loads
+
