@@ -3,32 +3,29 @@ package com.yorku.budgettracker.budgettracker.service;
 import java.util.List;
 
 import com.yorku.budgettracker.budgettracker.model.Expense;
-import com.yorku.budgettracker.budgettracker.repository.ExpenseRepository;
+import com.yorku.budgettracker.budgettracker.stub.ExpenseStore;
 
 public class BudgetService {
 
-    private final ExpenseRepository expenseRepository;
+    private final ExpenseStore expenseStore;
 
-    public BudgetService(ExpenseRepository expenseRepository) {
-        this.expenseRepository = expenseRepository;
+    public BudgetService(ExpenseStore expenseStore) {
+        this.expenseStore = expenseStore;
     }
 
     public void addExpense(Expense expense) {
-        expenseRepository.add(expense);
+        expenseStore.add(expense);
     }
 
     public List<Expense> getExpensesForTerm(String academicTerm) {
-        return expenseRepository.findByAcademicTerm(academicTerm);
+        return expenseStore.findByAcademicTerm(academicTerm);
     }
 
     public double getTotalExpensesForTerm(String academicTerm) {
-
         double total = 0;
-
         for (Expense e : getExpensesForTerm(academicTerm)) {
             total += e.getAmount();
         }
-
         return total;
     }
 
