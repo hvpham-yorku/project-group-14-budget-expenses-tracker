@@ -5,7 +5,17 @@ export async function getAllExpenses() {
   return response.json();
 }
 
-export async function getExpensesByTerm() {
-  const response = await fetch(BASE_URL);
+export async function getExpensesByTerm(term) {
+  const response = await fetch(`${BASE_URL}/term/${term}`);
+  return response.json();
+}
+
+export async function getChronologicalExpensesByTerm(term) {
+  const response = await fetch(`${BASE_URL}/term/${term}/chronological`);
+  return response.json();
+}
+
+export async function getGroupedExpensesByTerm(term) {
+  const response = await fetch(`${BASE_URL}/term/${term}/grouped`);
   return response.json();
 }
