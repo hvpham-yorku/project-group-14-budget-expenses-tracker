@@ -57,3 +57,60 @@ select {
   color: #999;
   text-align: center;
 }
+.tab-navigation {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.tab-navigation button {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  background: #374151;
+  color: #9ca3af;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.tab-navigation button.active {
+  background: #3b82f6;
+  color: white;
+}
+
+.filter-controls label {
+  font-size: 0.9rem;
+  color: #4b5563;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.tab-navigation {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.tab-navigation button {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  background: #374151;
+  color: #9ca3af;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.tab-navigation button.active {
+  background: #3b82f6;
+  color: white;
+}
+
+.filter-controls label {
+  font-size: 0.9rem;
+  color: #4b5563;
+  display: block;
+  margin-bottom: 4px;
+}
