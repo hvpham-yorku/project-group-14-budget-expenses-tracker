@@ -38,6 +38,7 @@ public class ExpenseController {
         this.expenseRepository = expenseRepository;
     }
 
+    // GET /api/expenses
     @GetMapping
     public ResponseEntity<List<Expense>> getAllExpenses() {
         return ResponseEntity.ok(expenseRepository.findAll());
@@ -49,11 +50,13 @@ public class ExpenseController {
         return ResponseEntity.ok(page);
     }
 
+    // GET /api/expenses/term/{term}
     @GetMapping("/term/{term}")
     public ResponseEntity<List<Expense>> getExpensesByTerm(@PathVariable String term) {
         return ResponseEntity.ok(expenseRepository.findByAcademicTerm(term));
     }
 
+    // Requirement: View all expenses for a selected term (Chronological)
     @GetMapping("/term/{term}/chronological")
     public ResponseEntity<List<Expense>> getExpensesByTermChronological(@PathVariable String term) {
         List<Expense> expenses = expenseRepository.findByAcademicTerm(term);
@@ -61,6 +64,7 @@ public class ExpenseController {
         return ResponseEntity.ok(expenses);
     }
 
+    // Requirement: View expenses grouped by category for a term
     @GetMapping("/term/{term}/grouped")
     public ResponseEntity<Map<String, Double>> getExpensesByTermGrouped(@PathVariable String term) {
         List<Expense> expenses = expenseRepository.findByAcademicTerm(term);
@@ -72,32 +76,41 @@ public class ExpenseController {
         return ResponseEntity.ok(groupedExpenses);
     }
 
+    // POST /api/expenses
     @PostMapping
     public ResponseEntity<Expense> createExpense(
             @Valid @RequestBody Expense expense) {
+
         Expense savedExpense = expenseRepository.save(expense);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedExpense);
     }
 
+    // PUT /api/expenses/{id}
     @PutMapping("/{id}")
     public ResponseEntity<Expense> updateExpense(
             @PathVariable Long id,
             @Valid @RequestBody Expense updatedExpense) {
+
         Expense expense = expenseRepository.findById(id)
                 .orElseThrow(() -> new ExpenseNotFoundException(id));
+
         expense.setCategory(updatedExpense.getCategory());
         expense.setDescription(updatedExpense.getDescription());
         expense.setAmount(updatedExpense.getAmount());
         expense.setDate(updatedExpense.getDate());
         expense.setAcademicTerm(updatedExpense.getAcademicTerm());
+
         return ResponseEntity.ok(expenseRepository.save(expense));
     }
 
+    // DELETE /api/expenses/{id}
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteExpense(@PathVariable Long id) {
+
         if (!expenseRepository.existsById(id)) {
             throw new ExpenseNotFoundException(id);
         }
+
         expenseRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
@@ -113,6 +126,7 @@ public class ExpenseController {
     
     @GetMapping("/category/{category}")
     public ResponseEntity<List<Expense>> getExpensesByCategory(@PathVariable String category) {
+        // Fixed: Replaced undefined getCategory() with findByCategory()
         List<Expense> expenses = expenseRepository.findByCategory(category);
         return ResponseEntity.ok(expenses);
     }
@@ -121,6 +135,7 @@ public class ExpenseController {
     public ResponseEntity<List<Expense>> getExpensesByDateRange(
         @RequestParam("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate start,
         @RequestParam("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end) {
+
         List<Expense> expenses = expenseRepository.findByDateBetween(start, end);
         return ResponseEntity.ok(expenses);
     }
@@ -129,6 +144,7 @@ public class ExpenseController {
     public ResponseEntity<Double> getTotalExpensesByDateRange(
         @RequestParam("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate start,
         @RequestParam("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end) {
+
         Double total = expenseRepository.findTotalAmountByDateRange(start, end);
         return ResponseEntity.ok(total != null ? total : 0.0);
     }
@@ -145,6 +161,7 @@ public class ExpenseController {
         return ResponseEntity.ok(expenses);
     }
 
+    // DTO for returning summary data
     public static class CategoryTotal {
         private String category;
         private Double totalAmount;
@@ -154,6 +171,7 @@ public class ExpenseController {
             this.totalAmount = totalAmount;
         }
 
+        // getters
         public String getCategory() { return category; }
         public Double getTotalAmount() { return totalAmount; }
     }
